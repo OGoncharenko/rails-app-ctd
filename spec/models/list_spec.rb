@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe List, type: :model do
   let(:user) { User.create(email: 'test@test.com', last_name: 'Test', first_name: 'User', password: 'password123') }
   let(:category) { Category.create(name: 'Test Category') }
-  let(:list) { List.create(name: name, user: user, categories: [category]) }
+  let(:list) { List.create(name: name, user: user, categories: [ category ]) }
 
   let(:name) { 'Test List' }
   let!(:list_items) do
@@ -19,7 +19,7 @@ RSpec.describe List, type: :model do
     end
 
     it "belongs to a category" do
-      expect(list.categories).to eq([category])
+      expect(list.categories).to eq([ category ])
     end
 
     it "has many list items" do

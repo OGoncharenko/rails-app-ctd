@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe ListCategory, type: :model do
   let(:user) { User.create(email: 'test@test.com', last_name: 'Test', first_name: 'User', password: 'password123') }
   let(:category) { Category.create(name: 'Test Category') }
-  let(:list) { List.create(name: 'Test List', user: user, categories: [category]) }
+  let(:list) { List.create(name: 'Test List', user: user, categories: [ category ]) }
   let(:list_category) { ListCategory.create(list: list, category: category) }
 
   describe "Associations" do
