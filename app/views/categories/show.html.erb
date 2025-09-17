@@ -1,0 +1,9 @@
+<h1><%= @category.name %></h1>
+
+<div>
+  <% @category.lists.each do |list| %>
+    <div class="list-item">
+      <h2><%= link_to list.name, list_path(list) %></h2>
+    </div>
+  <% end %>
+</div>

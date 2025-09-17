@@ -1,0 +1,21 @@
+<h2><%= @list.name %></h2>
+
+<p>Created by: <%= "#{@list.user.first_name} #{@list.user.last_name}" if @list.user %></p>
+
+<div>
+  <% @list.categories.each do |category| %>
+    <div>
+      <h5><%= category.name %></h5>
+    </div>
+  <% end %>
+</div>
+
+<ul>
+  <li>
+    <% @list.list_items.order(:position).each do |item| %>
+      <div class="item">
+        <h4><%= item.name %></h4>
+      </div>
+    <% end %>
+  </li>
+</ul>
