@@ -1,0 +1,9 @@
+<h1>All Favorites Lists</h1>
+
+<div>
+  <% @lists.each do |list| %>
+    <div class="list-item">
+      <h2><%= link_to list.name, list_path(list) %></h2>
+    </div>
+  <% end %>
+</div>
