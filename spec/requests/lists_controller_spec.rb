@@ -68,4 +68,66 @@ RSpec.describe ListsController, type: :request do
       end
     end
   end
+
+  describe "POST /lists" do
+    let!(:user) do
+        User.create!(
+          first_name: "Test",
+          last_name: "User",
+          email: "test@user.com",
+          password: "password"
+        )
+      end
+
+      it "creates a new list" do
+        get new_list_path
+        expect(response).to have_http_status(:ok)
+
+        post lists_path, params: { list: { name: "New List", description: "List Description", user_id: user.id } }
+        follow_redirect!
+        expect(response.body).to include("New List")
+        expect(response.body).to include("Created by: #{user.first_name} #{user.last_name}")
+      end
+  end
+
+  describe "PUT /lists" do
+    let!(:user) do
+      User.create!(
+        first_name: "Test",
+        last_name: "User",
+        email: "test@user.com",
+        password: "password"
+      )
+    end
+
+    it "updates an existing list" do
+      list = List.create!(name: "Old List", description: "Old Description", user: user)
+
+      get edit_list_path(list)
+      expect(response).to have_http_status(:ok)
+
+      put list_path(list), params: { list: { name: "Updated List", description: "Updated Description" } }
+      follow_redirect!
+      expect(response.body).to include("Updated List")
+    end
+  end
+
+  describe "DELETE /lists/:id" do
+    let!(:user) do
+      User.create!(
+        first_name: "Test",
+        last_name: "User",
+        email: "test@user.com",
+        password: "password"
+      )
+    end
+
+    it "deletes an existing list" do
+      list = List.create!(name: "List to Delete", description: "Description", user: user)
+
+      delete list_path(list)
+      follow_redirect!
+      expect(response.body).not_to include("List to Delete")
+    end
+  end
 end
