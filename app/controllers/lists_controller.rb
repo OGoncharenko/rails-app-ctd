@@ -58,7 +58,7 @@ class ListsController < ApplicationController
     params.require(:list).permit(
       :name,
       :description,
-      :category_ids => [],
+      category_ids: [],
       list_items_attributes: [ :id, :name, :position, :_destroy ])
   end
 end
