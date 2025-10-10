@@ -6,58 +6,55 @@ function setupListForm() {
 
   if (!addItemButton || !listItemsContainer) return;
 
- function updateItemNumbers() {
+ const updateItemNumbers = () => {
     Array.from(listItemsContainer.querySelectorAll(".list-item-fields"))
       .filter((el) => el.style.display !== "none")
       .forEach((child, idx) => {
         const position = child.querySelector(".item-position");
         if (position) position.textContent = idx + 1;
 
-        const hiddenPos = child.querySelector('input[name*="[position]"]');
-        if (hiddenPos) hiddenPos.value = idx + 1;
+        const hiddenPosition = child.querySelector('input[name*="[position]"]');
+        if (hiddenPosition) hiddenPosition.value = idx + 1;
       });
   }
 
-  addItemButton.addEventListener("click", () => {
+  const createListItem = () => {
     const uniqueId = new Date().getTime();
-
-    const template = `
+    return`
       <div class="list-item-fields">
         <span class="item-position"></span>
         <input type="text"
                name="list[list_items_attributes][${uniqueId}][name]"
                id="list_list_items_attributes_${uniqueId}_name" />
-        <input type="hidden"
-               name="list[list_items_attributes][${uniqueId}][position]"
-               id="list_list_items_attributes_${uniqueId}_position"
-               value="" />
-        <input type="hidden"
-               name="list[list_items_attributes][${uniqueId}][_destroy]"
-               id="list_list_items_attributes_${uniqueId}__destroy"
-               value="false" />
         <button type="button" class="remove-item">Remove item</button>
       </div>
     `;
+  }
 
-    listItemsContainer.insertAdjacentHTML("beforeend", template);
+    const handleAddItem = () => {
+      listItemsContainer.insertAdjacentHTML("beforeend", createListItem());
     updateItemNumbers();
-  });
+  }
 
-  listItemsContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("remove-item")) {
-      const wrapper = event.target.closest(".list-item-fields");
-      const destroyField = wrapper.querySelector('input[name*="[_destroy]"]');
+  const handleRemoveItem = (event) => {
+    const removeBtn = event.target.closest(".remove-item");
+    if (!removeBtn) return;
 
-      if (destroyField) {
-        destroyField.value = "1";
-        wrapper.style.display = "none";
-      } else {
-        wrapper.remove();
-      }
+    const itemWrapper = removeBtn.closest(".list-item-fields");
+    const destroyInput = itemWrapper.querySelector('input[name*="[_destroy]"]');
+
+    if (destroyInput) {
+      destroyInput.value = "1";
+      itemWrapper.style.display = "none";
+    } else {
+      itemWrapper.remove();
+    }
 
       updateItemNumbers();
     }
-  });
+
+  addItemButton.addEventListener("click", handleAddItem);
+  listItemsContainer.addEventListener("click", handleRemoveItem);
 
   updateItemNumbers();
 }
