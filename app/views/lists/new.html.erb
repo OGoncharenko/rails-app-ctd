@@ -1,0 +1,10 @@
+<% content_for :title, "New List" %>
+
+<h1>New List</h1>
+<%= render "form", list: @list %>
+
+<br>
+
+<div>
+  <%= link_to "Back to Lists", lists_path %>
+</div>

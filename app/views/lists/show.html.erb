@@ -10,12 +10,16 @@
   <% end %>
 </div>
 
-<ul>
-  <li>
-    <% @list.list_items.order(:position).each do |item| %>
-      <div class="item">
-        <h4><%= item.name %></h4>
-      </div>
+<ol>
+    <% @list.list_items.each do |item, index| %>
+      <li class="item">
+        <%= index %><%= item.name %>
+      </li>
     <% end %>
-  </li>
-</ul>
+</ol>
+<div><%= link_to "Edit List", edit_list_path(@list) %></div>
+<%= button_to "Delete this list", @list, method: :delete, data: { confirm: "Are you sure?" } %>
+
+<div>
+  <%= link_to "All Lists", lists_path %>
+</div>

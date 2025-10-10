@@ -1,0 +1,53 @@
+<%= form_with(model: @list) do |form|%>
+  <% if @list.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+        <% @list.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :categories, "Categories (choose up to 2)", style: "display: block" %>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+      <div>
+        <%= b.check_box %> <%= b.text %>
+      </div>
+    <% end %>
+  </div>
+
+  <h3>List Items</h3>
+  <div id="list-items">
+    <%= form.fields_for :list_items do |item_form| %>
+      <div class="list-item-fields">
+        <span class="item-position"><%= item_form.index.to_i + 1 %></span>
+        <%= item_form.text_field :name %>
+        <%= item_form.hidden_field :position, value: item_form.index.to_i + 1 %>
+        <%= item_form.hidden_field :_destroy %>
+        <button type="button" class="remove-item">Remove item</button>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <button type="button" id="add-item">Add Item</button>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

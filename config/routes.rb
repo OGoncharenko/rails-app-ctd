@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :lists, only: %i[index show] do
-    resources :list_items, only: %i[index show]
+  resources :lists do
+    resources :list_items
     resources :list_categories, only: %i[index show]
   end
   resources :categories, only: %i[index show]
