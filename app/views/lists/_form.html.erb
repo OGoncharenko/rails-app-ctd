@@ -34,11 +34,11 @@
   <div id="list-items">
     <%= form.fields_for :list_items do |item_form| %>
       <div class="list-item-fields">
-        <span><%= item_form.object.position %></span>
+        <span class="item-position"><%= item_form.index.to_i + 1 %></span>
         <%= item_form.text_field :name %>
-        <% if item_form.object.position && item_form.object.position > 3 %>
-          <button type="button" class="remove-item">Remove item</button>
-        <% end %>
+        <%= item_form.hidden_field :position, value: item_form.index.to_i + 1 %>
+        <%= item_form.hidden_field :_destroy %>
+        <button type="button" class="remove-item">Remove item</button>
       </div>
     <% end %>
   </div>

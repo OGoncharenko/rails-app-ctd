@@ -8,17 +8,16 @@ class ListsController < ApplicationController
   end
 
   def new
-    # @list = List.new
     @list = current_user.lists.new
 
-    3.times do |i|
-      @list.list_items.build(position: i + 1)
-    end
-
-    # @list_items = @list.list_items
-    # (params[:items_count] || 3).to_i.times do |i|
+    # 3.times do |i|
     #   @list.list_items.build(position: i + 1)
     # end
+
+    @list_items = @list.list_items
+    (params[:items_count] || 3).to_i.times do |i|
+      @list.list_items.build(position: i + 1)
+    end
 
     @categories = Category.all.pluck(:name, :id)
   end
@@ -29,7 +28,6 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.new(list_params)
-    # @list = List.new(list_params)
 
     if @list.save
       redirect_to @list, notice: "List was successfully created."

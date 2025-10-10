@@ -9,7 +9,7 @@ class List < ApplicationRecord
   validate :maximum_two_categories
   validates :name, presence: true, length: { maximum: 60 }
   validates :description, length: { maximum: 10000 }
-  validate :first_three_items_not_empty
+  # validate :first_three_items_not_empty
 
   private
   def maximum_two_categories
@@ -18,11 +18,11 @@ class List < ApplicationRecord
     end
   end
 
-  def first_three_items_not_empty
-    first_three = list_items.first(3)
-
-    if first_three.all? { |item| item.name.blank? }
-      errors.add(:base, "The first three list items cannot all be empty.")
-    end
-  end
+  # def first_three_items_not_empty
+  #   first_three = list_items.first(3)
+  #
+  #   if first_three.all? { |item| item.name.blank? }
+  #     errors.add(:base, "The first three list items cannot all be empty.")
+  #   end
+  # end
 end
