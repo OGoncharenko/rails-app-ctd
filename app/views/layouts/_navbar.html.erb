@@ -1,0 +1,12 @@
+<div style="display: flex; justify-content: space-between; align-items: center; background-color: #f0f0f0; padding: 10px;">
+  <h4> <%= link_to "Home", root_path %></h4>
+  <h4>
+    <% if current_user %>
+      <span>Welcome, <%= link_to current_user.first_name, user_path(current_user) %>!</span>
+      <h4><%= link_to "My lists", lists_mylists_path %></h4>
+      <%= button_to "Sign out", destroy_user_session_path, method: 'delete' %>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path %></h4>
+      <%= link_to "Sign up", new_user_registration_path %>
+    <% end %>
+</div>

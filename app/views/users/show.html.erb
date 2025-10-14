@@ -2,3 +2,41 @@
 
 <p><%= "#{@user.first_name} #{@user.last_name}" %></p>
 <p>Email: <%= @user.email %></p>
+<% if current_user == @user %>
+ <%= link_to 'Edit Profile', edit_user_registration_path %>
+ <%= button_to "Sign out", destroy_user_session_path, method: 'delete' %>
+<% end %>
+
+<h2><%= current_user == @user ? "My Lists" : "Lists by this user" %></h2>
+
+<% if @user.lists.any? %>
+  <div class="list-item">
+    <% @user.lists.each do |list| %>
+        <strong><%= link_to list.name, list %></strong>
+        <p><%= list.description %></p>
+        <p>Created at: <%= list.created_at.strftime("%B %d, %Y") %></p>
+      <% if current_user == @user %>
+        <p>
+          <%= link_to 'Edit', edit_list_path(list) %> |
+          <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <% if current_user == @user %>
+    <p>You have no lists yet. <%= link_to 'Create your first list', new_list_path %></p>
+  <% else %>
+    <p>This user has no lists yet.</p>
+  <% end %>
+<% end %>
+
+<style>
+    .list-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+</style>
