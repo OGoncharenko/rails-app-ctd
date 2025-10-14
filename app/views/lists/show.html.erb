@@ -1,6 +1,6 @@
 <h2><%= @list.name %></h2>
 
-<p>Created by: <%= "#{@list.user.first_name} #{@list.user.last_name}" if @list.user %></p>
+<p>Created by: <%= link_to "#{@list.user.first_name} #{@list.user.last_name}", user_path(@list.user) if @list.user %></p>
 
 <div>
   <% @list.categories.each do |category| %>
@@ -11,14 +11,18 @@
 </div>
 
 <ol>
-    <% @list.list_items.each do |item, index| %>
+    <% @list.list_items.each do |item| %>
       <li class="item">
-        <%= index %><%= item.name %>
+        <%= item.name %>
       </li>
     <% end %>
 </ol>
-<div><%= link_to "Edit List", edit_list_path(@list) %></div>
-<%= button_to "Delete this list", @list, method: :delete, data: { confirm: "Are you sure?" } %>
+<div>
+  <% if @list.user == current_user %>
+    <%= link_to "Edit List", edit_list_path(@list) %>
+    <%= button_to "Delete this list", @list, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  <% end %>
+</div>
 
 <div>
   <%= link_to "All Lists", lists_path %>

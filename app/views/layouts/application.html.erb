@@ -23,9 +23,15 @@
   </head>
 
   <body>
-    <div class="header">
-      <p style="color: green"><%= notice %></p>
+    <%= render partial: "layouts/navbar" %>
+
+    <% flash.each do |key, value| %>
+    <div class="flash-message alert alert-<%= key == 'alert' ? 'danger' : 'success' %>">
+      <%= value %>
     </div>
+  <% end %>
+
     <%= yield %>
+    <%= render partial: "layouts/footer" %>
   </body>
 </html>
