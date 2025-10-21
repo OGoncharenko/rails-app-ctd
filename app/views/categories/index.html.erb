@@ -1,9 +1,14 @@
-<h1>All categories</h1>
+<h1>Discover</h1>
 
-<div>
+<div class="categories-container">
   <% @categories.each do |category| %>
-    <div class="category-item">
-      <h2><%= link_to category.name, category_path(category) %></h2>
+    <%= link_to category_path(category), class: "category-card-link" do %>
+    <div class="category-card" style="background-color: <%= category_colors(category) %>;">
+      <div class="category-icon">
+        <i class="<%= category_icon(category) %> category-icon"></i>
+      </div>
+      <div class="category-name"><%= category.name %></div>
     </div>
+    <% end %>
   <% end %>
 </div>
