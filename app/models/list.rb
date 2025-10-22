@@ -7,8 +7,8 @@ class List < ApplicationRecord
   accepts_nested_attributes_for :list_items, allow_destroy: true
   accepts_nested_attributes_for :list_categories, allow_destroy: true
 
-  validates :name, presence: true, length: { maximum: 60 }
-  validates :description, length: { maximum: 10000 }
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :description, length: { maximum: 150 }
   validate :empty_any_list_items
   validate :max_list_categories
 
