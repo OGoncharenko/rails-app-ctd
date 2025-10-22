@@ -1,0 +1,31 @@
+.user-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.user-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.user-email {
+    font-size: 1.2rem;
+    color: gray;
+    margin-bottom: 2rem;
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.user-lists-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 3rem 1rem;
+    border-bottom: 1px solid #E9806E;
+}

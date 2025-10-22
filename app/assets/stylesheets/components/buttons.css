@@ -22,7 +22,19 @@
     text-decoration: none;
 }
 
-.actions {
+.user-action-button {
+    background-color: transparent;
+    color: #E9806E;
+    border: 1px solid #E9806E;
+    border-radius: 0.625rem;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0.625rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.list-actions {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
