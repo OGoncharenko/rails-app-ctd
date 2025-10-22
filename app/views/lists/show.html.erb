@@ -1,29 +1,48 @@
-<h2><%= @list.name %></h2>
-
-<p>Created by: <%= link_to "#{@list.user.first_name} #{@list.user.last_name}", user_path(@list.user) if @list.user %></p>
-
-<div>
-  <% @list.categories.each do |category| %>
-    <div class="category-item">
-      <h5><%=link_to category.name, category_path(category) %></h5>
+<div class="list-show-container">
+  <div class="list-show-name-container">
+    <div class="list-name">
+      <%= @list.name %>
     </div>
-  <% end %>
+
+  <div class="user-tag">
+    Created by:
+    <%= link_to "#{@list.user.first_name} #{@list.user.last_name}", user_path(@list.user) if @list.user %>
+  </div>
 </div>
 
-<ol>
-    <% @list.list_items.each do |item| %>
-      <li class="item">
-        <%= item.name %>
-      </li>
+  <div class="list-show-description">
+    <%= @list.description %>
+  </div>
+
+  <div class="categories">
+    <% @list.categories.each do |category| %>
+      <div>
+          <%=link_to category.name, category_path(category), style: "background-color: #{category_colors(category.name)}", class: "category-tag" %>
+      </div>
     <% end %>
-</ol>
-<div>
-  <% if @list.user == current_user %>
-    <%= link_to "Edit List", edit_list_path(@list) %>
-    <%= button_to "Delete this list", @list, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-  <% end %>
-</div>
+  </div>
 
-<div>
-  <%= link_to "All Lists", lists_path %>
+  <ol class="items-list">
+      <% @list.list_items.each do |item| %>
+        <li class="item">
+          <%= item.name %>
+        </li>
+      <% end %>
+  </ol>
+
+
+  <div class="actions">
+    <% if @list.user == current_user %>
+      <%= link_to  edit_list_path(@list) do %>
+        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+      <% end %>
+      <%= button_to @list, method: :delete, data: { turbo_confirm: "Are you sure?" } do %>
+        <i class="fa-solid fa-trash-can delete-icon"></i>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "Back to All Lists", lists_path, class: "back-button" %>
+  </div>
 </div>

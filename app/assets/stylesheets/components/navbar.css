@@ -27,7 +27,7 @@
     display: flex;
     justify-content: center;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 550;
     align-items: center;
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
@@ -36,7 +36,7 @@
     width: 10rem;
 
     a {
-        color: black;
+        color: #333333;
         text-decoration: none;
     }
 
@@ -78,8 +78,7 @@
             border: none;
             cursor: pointer;
             font-size: 1.5rem;
-            color: black;
-            /*padding: 0.5rem 1rem;*/
+            color: #333333;
             border-radius: 0.5rem;
             transition: background-color 0.2s ease;
 

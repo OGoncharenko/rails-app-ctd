@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
-  margin: 1rem;
+  margin: 2rem;
 }
 
 .list-card {
@@ -20,77 +20,44 @@
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(237, 130, 115);
   }
+}
 
-  .list-name {
-    margin-bottom: 0.5rem;
+.list-name {
+  margin-bottom: 0.5rem;
+  color: #333333;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.user-tag {
+  font-size: 0.75rem;
+  color: black;
+  margin-bottom: 0.5rem;
+
+  a {
     color: black;
-    font-size: 2rem;
-    font-weight: 600;
+    font-weight: bold;
     text-decoration: none;
-  }
-
-  .user-tag {
-    font-size: 0.75rem;
-    color: black;
-    margin-bottom: 0.5rem;
-
-    a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-  }
-
-  .categories {
-    margin-bottom: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-    gap: 0.4rem;
-
-    .category-tag {
-      border-radius: 0.5rem;
-      padding: 0.25rem 0.6rem;
-      font-size: 0.7rem;
-      color: #495057;
-      text-decoration: none;
-    }
-  }
-
-  .actions {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    display: flex;
-    gap: 0.5rem;
-    margin-top: auto;
-    button {
-      background: none;
-      border: none;
-      color: darkred;
-      cursor: pointer;
-      font-size: 0.9rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
 
       &:hover {
-        background-color: #e9ecef;
+          text-decoration: underline;
       }
-    }
-    a {
-      font-size: 1rem;
-      color: #E9806E;
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-
-      &:hover {
-        background-color: #e9ecef;
-      }
-    }
   }
+}
+
+.categories {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  gap: 0.4rem;
+}
+
+.category-tag {
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.7rem;
+  color: #495057;
+  text-decoration: none;
 }

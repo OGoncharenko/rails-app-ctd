@@ -1,4 +1,5 @@
 document.addEventListener("turbo:load", setupListForm);
+document.addEventListener("turbo:render", setupListForm);
 
 function setupListForm() {
   const addItemButton = document.getElementById("add-item");
@@ -6,7 +7,17 @@ function setupListForm() {
 
   if (!addItemButton || !listItemsContainer) return;
 
- const updateItemNumbers = () => {
+  const existingHandler = addItemButton._addItemHandler;
+  if (existingHandler) {
+    addItemButton.removeEventListener("click", existingHandler);
+  }
+
+  const existingContainerHandler = listItemsContainer._removeItemHandler;
+  if (existingContainerHandler) {
+    listItemsContainer.removeEventListener("click", existingContainerHandler);
+  }
+
+  const updateItemNumbers = () => {
     Array.from(listItemsContainer.querySelectorAll(".list-item-fields"))
       .filter((el) => el.style.display !== "none")
       .forEach((child, idx) => {
@@ -23,16 +34,21 @@ function setupListForm() {
     return`
       <div class="list-item-fields">
         <span class="item-position"></span>
-        <input type="text"
-               name="list[list_items_attributes][${uniqueId}][name]"
-               id="list_list_items_attributes_${uniqueId}_name" />
-        <button type="button" class="remove-item">Remove item</button>
+        <input
+          class="list-item-input"
+          type="text"
+          name="list[list_items_attributes][${uniqueId}][name]"
+          id="list_list_items_attributes_${uniqueId}_name"
+        />
+        <button type="button" class="remove-item">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
       </div>
     `;
   }
 
-    const handleAddItem = () => {
-      listItemsContainer.insertAdjacentHTML("beforeend", createListItem());
+  const handleAddItem = () => {
+    listItemsContainer.insertAdjacentHTML("beforeend", createListItem());
     updateItemNumbers();
   }
 
@@ -50,12 +66,14 @@ function setupListForm() {
       itemWrapper.remove();
     }
 
-      updateItemNumbers();
-    }
+    updateItemNumbers();
+  }
+
+  addItemButton._addItemHandler = handleAddItem;
+  listItemsContainer._removeItemHandler = handleRemoveItem;
 
   addItemButton.addEventListener("click", handleAddItem);
   listItemsContainer.addEventListener("click", handleRemoveItem);
 
   updateItemNumbers();
 }
-

@@ -9,9 +9,11 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
-@import "pages/lists.css";
+/*@import "pages/lists.css";*/
 
 html, body {
+    font-family: 'ABeeZee', sans-serif;
+    color: #333333;
     margin: 0;
     padding: 0;
 }

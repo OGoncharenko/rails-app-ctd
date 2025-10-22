@@ -1,6 +1,6 @@
-<h1>
-  <%= @is_mylists ? "My Lists" : "All Lists" %>
-</h1>
+<!--<h1>-->
+  <%#= @page_title %>
+<!--</h1>-->
 
 <% if @lists.any? %>
   <div class="lists-container">
@@ -31,7 +31,7 @@
         <div class="categories">
           <% list.categories.each do |category| %>
             <div>
-              <%= link_to category.name, category_path(category), style: "background-color: #{category_colors(category)}", class: "category-tag" %>
+              <%= link_to category.name, category_path(category), style: "background-color: #{category_colors(category.name)}", class: "category-tag" %>
             </div>
           <% end %>
         </div>

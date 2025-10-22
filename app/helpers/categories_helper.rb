@@ -1,5 +1,5 @@
 module CategoriesHelper
-  def category_colors(category)
+  def category_colors(category_name)
     colors = {
       "Travel" => "#75b9be",
       "Sports & Hiking" => "#AF7A6D",
@@ -14,7 +14,7 @@ module CategoriesHelper
       "Faith & Spirituality" => "#ffbfb7",
       "Science" => "#bbc5aa"
     }
-    colors[category.name] || { background: "#9B9B9B" }
+    colors[category_name] || { background: "#9B9B9B" }
   end
 
   def category_icon(category)

@@ -4,6 +4,7 @@ class ListsController < ApplicationController
   before_action :authorize_user!, only: %i[edit update destroy]
 
   def index
+    @page_title = "All Lists"
     @lists = List.all
   end
 
@@ -25,6 +26,7 @@ class ListsController < ApplicationController
   def mylists
     @lists = current_user.lists
     @is_mylists = true
+    @page_title = "My Lists"
     render :index
   end
 
@@ -67,6 +69,7 @@ class ListsController < ApplicationController
       :name,
       :description,
       category_ids: [],
+      list_categories_attributes: [ :id, :category_id, :_destroy ],
       list_items_attributes: [ :id, :name, :position, :_destroy ])
   end
 end
