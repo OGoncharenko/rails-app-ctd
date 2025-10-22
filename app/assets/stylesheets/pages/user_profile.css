@@ -29,3 +29,18 @@
     margin: 3rem 1rem;
     border-bottom: 1px solid #E9806E;
 }
+
+.created-at-list {
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: auto;
+    height: 100%
+}
+
+.create-list-link {
+    color: #E9806E;
+    text-decoration: underline;
+    font-size: 1rem;
+}

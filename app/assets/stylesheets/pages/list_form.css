@@ -29,20 +29,22 @@
 
 .list-description-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 1rem;
     border-bottom: 1px solid gray;
 }
 
 .description_input {
-    flex: 1;
     border: none;
     border-radius: 0.5rem;
     padding: 0.5rem;
     font-size: 1.2rem;
     font-family: 'ABeeZee', sans-serif;
     outline: none;
-    height: 5rem;
+    min-height: 5rem;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
     hyphens: auto;
     word-break: break-word;
     overflow-wrap: break-word;

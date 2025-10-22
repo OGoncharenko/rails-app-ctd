@@ -24,3 +24,13 @@
     display: flex;
     justify-content: center;
 }
+
+.shared-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+
+    a {
+        color: #E9806E;
+        text-decoration: underline;
+    }
+}

@@ -37,7 +37,7 @@
             <% end %>
           </div>
         <% end %>
-        <div style="font-size: 0.9rem; display: flex; justify-content: flex-end; align-items: flex-end; margin-top: auto; height: 100%">
+        <div class="created-at-list">
           Created at: <%= list.created_at.strftime("%B %d, %Y") %>
         </div>
       </div>
@@ -45,8 +45,12 @@
   </div>
 <% else %>
   <% if current_user == @user %>
-    <p>You have no lists yet. <%= link_to 'Create your first list', new_list_path %></p>
+    <p style="margin-left: 2rem">
+      You have no lists yet. <%= link_to 'Create your first list', new_list_path, class: "create-list-link" %>
+    </p>
   <% else %>
-    <p>This user has no lists yet.</p>
+    <p style="margin-left: 2rem">
+      This user has no lists yet.
+    </p>
   <% end %>
 <% end %>
