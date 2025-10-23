@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+My Lists app helps users to share their favorite things by creating the lists with items.
+The list has categories tags that will help sort lists on the Discover page.
+There you can click on the category and see all the lists. 
+Also, you need to have an account to be able to create a list!
 
-Things you may want to cover:
+## Application is built on:
 
-* Ruby version
+- Ruby 3.3.2
+- Rails 7.1.3
+- SQLite3 2.1
 
-* System dependencies
+## Setup
 
-* Configuration
+- Clone the repository
+- Run `bundle install`
+- Run `rails db:create db:migrate`
 
-* Database creation
+- Run `bin/rails s` to start the server
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Notes

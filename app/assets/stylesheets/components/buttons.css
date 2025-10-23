@@ -1,0 +1,68 @@
+.nav-buttons {
+    display: flex;
+    flex-direction: row;
+
+    i {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        color: #E9806E;
+    }
+}
+
+.submit-button {
+    background-color: #E9806E;
+    color: whitesmoke;
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0.625rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.user-action-button {
+    background-color: transparent;
+    color: #E9806E;
+    border: 1px solid #E9806E;
+    border-radius: 0.625rem;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0.625rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.list-actions {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    button {
+        background: none;
+        border: none;
+        color: darkred;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+
+        &:hover {
+            background-color: #e9ecef;
+        }
+    }
+    a {
+        font-size: 1.2rem;
+        color: #E9806E;
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+
+        &:hover {
+            background-color: #e9ecef;
+        }
+    }
+}

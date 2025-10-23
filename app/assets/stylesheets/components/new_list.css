@@ -1,0 +1,28 @@
+.new-list {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10;
+}
+
+.add-btn {
+    background: transparent;
+    width: 6rem;
+    height: 6rem;
+    font-size: 1.6rem;
+    color: #495057;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(233, 128, 110);
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(237, 130, 115);
+    }
+}

@@ -5,24 +5,26 @@ class List < ApplicationRecord
   has_many :categories, through: :list_categories
 
   accepts_nested_attributes_for :list_items, allow_destroy: true
+  accepts_nested_attributes_for :list_categories, allow_destroy: true
 
-  validate :maximum_two_categories
-  validates :name, presence: true, length: { maximum: 60 }
-  validates :description, length: { maximum: 10000 }
-  # validate :first_three_items_not_empty
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :description, length: { maximum: 150 }
+  validate :empty_any_list_items
+  validate :max_list_categories
+
+  default_scope { order(updated_at: :desc, created_at: :desc) }
 
   private
-  def maximum_two_categories
-    if category_ids.size > 2
-      errors.add(:categories, "Can't have more than 2 categories")
+
+  def empty_any_list_items
+    if list_items.any? { |item| item.name.blank? }
+      errors.add(:base, "List items cannot be empty.")
     end
   end
 
-  # def first_three_items_not_empty
-  #   first_three = list_items.first(3)
-  #
-  #   if first_three.all? { |item| item.name.blank? }
-  #     errors.add(:base, "The first three list items cannot all be empty.")
-  #   end
-  # end
+  def max_list_categories
+    if list_categories.size > 2
+      errors.add(:categories, "Can't have more than 2 categories")
+    end
+  end
 end

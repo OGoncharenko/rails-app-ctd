@@ -1,0 +1,46 @@
+.user-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.user-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.user-email {
+    font-size: 1.2rem;
+    color: gray;
+    margin-bottom: 2rem;
+}
+
+.user-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.user-lists-header {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 3rem 1rem;
+    border-bottom: 1px solid #E9806E;
+}
+
+.created-at-list {
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: auto;
+    height: 100%
+}
+
+.create-list-link {
+    color: #E9806E;
+    text-decoration: underline;
+    font-size: 1rem;
+}

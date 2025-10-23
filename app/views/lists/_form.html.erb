@@ -1,4 +1,5 @@
-<%= form_with(model: @list) do |form|%>
+<div class="form-container">
+  <%= form_with(model: @list) do |form|%>
   <% if @list.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
@@ -11,43 +12,52 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="list-name-container">
+    <%= form.text_field :name, placeholder: "List Name", class: "list-input" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="list-description-container">
+    <%= form.textarea :description, placeholder: "Description limited to 150 characters", class: "description_input" %>
   </div>
 
-  <div>
+  <div class="categories-message">
     <%= form.label :categories, "Categories (choose up to 2)", style: "display: block" %>
+  </div>
+  <div class="list-categories">
     <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
-      <div>
-        <%= b.check_box %> <%= b.text %>
-      </div>
+    <div class="list-category-tag">
+      <%= b.label style: "background-color: #{category_colors(b.text)}", class: "list-category-item" do %>
+      <%= b.check_box class: "category-checkbox" %> <%= b.text %>
+      <% end %>
+    </div>
     <% end %>
   </div>
 
-  <h3>List Items</h3>
-  <div id="list-items">
+<!--  <h3>List Items</h3>-->
+  <div id="list-items" class="list-items">
     <%= form.fields_for :list_items do |item_form| %>
       <div class="list-item-fields">
         <span class="item-position"><%= item_form.index.to_i + 1 %></span>
-        <%= item_form.text_field :name %>
+        <%= item_form.text_field :name, placeholder: "List Item", class: "list-item-input" %>
         <%= item_form.hidden_field :position, value: item_form.index.to_i + 1 %>
         <%= item_form.hidden_field :_destroy %>
-        <button type="button" class="remove-item">Remove item</button>
+        <button type="button" class="remove-item">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
       </div>
     <% end %>
   </div>
 
-  <div>
-    <button type="button" id="add-item">Add Item</button>
+  <div class="add-item">
+    <button class="add-item-button" type="button" id="add-item">+ Add Item</button>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="submit-button-container">
+    <%= form.submit class: "submit-button" %>
+    <% if @list.persisted? %>
+      <%= button_to "Delete this list", @list, method: :delete, data: { confirm: "Are you sure?" }, class: "submit-button" %>
+    <% end %>
   </div>
 <% end %>
+
+</div>

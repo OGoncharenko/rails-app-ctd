@@ -1,0 +1,36 @@
+.login-container, .user-registration-container, .edit-profile-container {
+    font-family: 'ABeeZee', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.session-input {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #E9806E;
+    border-radius: 0.25rem;
+    width: 20rem;
+}
+
+.session-input:focus {
+    border: 2px solid #E9806E;
+    outline: none;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.shared-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+
+    a {
+        color: #E9806E;
+        text-decoration: underline;
+    }
+}
